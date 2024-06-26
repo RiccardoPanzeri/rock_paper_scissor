@@ -56,6 +56,8 @@ function getPlayerChoice(){
                 alert("Attenzione! input non valido");
                 sceltaPlayer = "non valido";
                 break;
+            
+
             }
         
     }while(sceltaPlayer == "non valido" || input < 1 || input > 3)
