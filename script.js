@@ -3,6 +3,8 @@ let playerScore = 0;
 let computerScore = 0;
 
 do{
+    playerScore = 0;
+    computerScore = 0;
     playMatch();
 
 }while(confirm("Vuoi giocare ancora?"));
@@ -111,6 +113,7 @@ function match(playerChoice, computerChoice){
 
 function playMatch(){
     let rounds = 0;
+    
     console.log("Alla meglio di cinque! via!");
     alert("Alla meglio di cinque! via!");
     while(rounds < 5){
