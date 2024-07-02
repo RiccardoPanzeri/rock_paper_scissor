@@ -1,14 +1,23 @@
 //variabili globali
 let playerScore = 0;
 let computerScore = 0;
+//codice per la creazione degli elementidella pagina
+const resultDiv = document.querySelector("#resultDiv");
 
-do{
+
+
+
+
+
+
+
+/*do{
     playerScore = 0;
     computerScore = 0;
     playMatch();
 
 }while(confirm("Vuoi giocare ancora?"));
-
+*/
 
 
 //funzione che controlla la scelta del computer
@@ -25,7 +34,7 @@ function getComputerChoice(){
             break;
         
         case 3:
-            sceltaComputer =  "Forbice";
+            sceltaComputer =  "Forbici";
             break;
         
         default:
@@ -42,7 +51,7 @@ function getPlayerChoice(){
     let input = 0; 
     do{
         
-        input = parseInt(prompt("Scegli: 1-Sasso, 2-Carta, 3-Forbice"));
+        //input = parseInt(prompt("Scegli: 1-Sasso, 2-Carta, 3-Forbici"));
 
         switch(input){
             case 1:
@@ -52,10 +61,10 @@ function getPlayerChoice(){
                 sceltaPlayer = "Carta";
                 break;
             case 3:
-                sceltaPlayer = "Forbice";
+                sceltaPlayer = "Forbici";
                 break;
             default:
-                alert("Attenzione! input non valido");
+                console.log("Attenzione! input non valido");
                 sceltaPlayer = "non valido";
                 break;
             
@@ -71,43 +80,42 @@ function getPlayerChoice(){
 
 
 function match(playerChoice, computerChoice){
-    alert(`Scelta computer: ${computerChoice}\nScelta Giocatore: ${playerChoice}
-        `)
+    
     console.log(`Scelta computer: ${computerChoice}\nScelta Giocatore: ${playerChoice}
             `)
     if(playerChoice === computerChoice){
         console.log("Pari!");
-        alert("Pari!");
         
-    }else if(playerChoice === "Carta" && computerChoice === "Forbice"){
-       console.log("Forbice batte Carta! Vince il Computer!");
-       alert("Forbice batte Carta! Vince il Computer!");
+        
+    }else if(playerChoice === "Carta" && computerChoice === "Forbici"){
+       console.log("Forbici batte Carta! Vince il Computer!");
+      
        computerScore++;
-    }else if(playerChoice === "Forbice" && computerChoice === "Sasso" ){
-        console.log("Sasso batte Forbice! Vince il Computer!");
-        alert("Sasso batte Forbice! Vince il Computer!");
+    }else if(playerChoice === "Forbici" && computerChoice === "Sasso" ){
+        console.log("Sasso batte Forbici! Vince il Computer!");
+        
         computerScore++;
     }else if(playerChoice === "Sasso" && computerChoice === "Carta" ){
         console.log("Carta batte Sasso! Vince il Computer!");
-        alert("Carta batte Sasso! Vince il Computer!");
+        
         computerScore++;
-    }else if(playerChoice === "Sasso" && computerChoice === "Forbice" ){
-        console.log("Sasso batte Forbice! Hai vinto!");
-        alert("Sasso batte Forbice! Hai vinto!");
+    }else if(playerChoice === "Sasso" && computerChoice === "Forbici" ){
+        console.log("Sasso batte Forbici! Hai vinto!");
+       
         playerScore++;
     }else if(playerChoice === "Carta" && computerChoice === "Sasso" ){
         console.log("Carta batte sasso! Hai vinto!");
-        alert("Carta batte sasso! Hai vinto!");
+        
         playerScore++;
-    }else if(playerChoice === "Forbice" && computerChoice === "Carta" ){
-        console.log("Forbice batte Carta! Hai vinto!");
-        alert("Forbice batte Carta! Hai vinto!");
+    }else if(playerChoice === "Forbici" && computerChoice === "Carta" ){
+        console.log("Forbici batte Carta! Hai vinto!");
+        
         playerScore++;
 
     }
 
     console.log(`Punteggio Computer : ${computerScore}\nPunteggio Giocatore: ${playerScore}`);
-    alert(`Punteggio Computer : ${computerScore}\nPunteggio Giocatore: ${playerScore}`)            
+       
             
 }
 
@@ -115,7 +123,7 @@ function playMatch(){
     let rounds = 0;
     
     console.log("Alla meglio di cinque! via!");
-    alert("Alla meglio di cinque! via!");
+    
     while(rounds < 5){
         match(getPlayerChoice(), getComputerChoice());
         rounds++;
@@ -123,13 +131,13 @@ function playMatch(){
 
     if(computerScore > playerScore){
         console.log(`Vince il Computer ${computerScore} a ${playerScore}!`);
-    alert(`Vince il Computer ${computerScore} a ${playerScore}!`);
+   
     }else if(computerScore < playerScore){
         console.log(`Hai vinto ${playerScore} a ${computerScore}!`);
-    alert(`Hai vinto ${playerScore} a ${computerScore}!`);
+    
     }else{
         console.log(`Pari! ${playerScore} a ${computerScore}!`);
-    alert(`Pari! ${playerScore} a ${computerScore}!`);
+    
     }
         
 }
