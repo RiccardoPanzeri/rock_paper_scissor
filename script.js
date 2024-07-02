@@ -100,39 +100,7 @@ function getComputerChoice(){
     return sceltaComputer;
 }
 
-//funzione che implementa la scelta da parte del giocatore
-/*function getPlayerChoice(){
-    let sceltaPlayer = "";
-    let input = 0; 
-    do{
-        
-        //input = parseInt(prompt("Scegli: 1-Sasso, 2-Carta, 3-Forbici"));
 
-        switch(input){
-            case 1:
-                sceltaPlayer = "Sasso";
-                break;
-            case 2:
-                sceltaPlayer = "Carta";
-                break;
-            case 3:
-                sceltaPlayer = "Forbici";
-                break;
-            default:
-                console.log("Attenzione! input non valido");
-                sceltaPlayer = "non valido";
-                break;
-            
-
-            }
-        
-    }while(sceltaPlayer == "non valido" || input < 1 || input > 3)
-  
-        
-    return sceltaPlayer;    
-
-}
-  */    
 
 function match(playerChoice, computerChoice){
     
@@ -197,9 +165,9 @@ function playMatch(playerChoice){
     
     
     
-        
-        match(playerChoice, getComputerChoice());
         rounds++;
+        match(playerChoice, getComputerChoice());
+        
     
     
     
