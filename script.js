@@ -66,13 +66,7 @@ buttonDiv.addEventListener("mouseout", (e)=>{
 
 
 
-/*do{
-    playerScore = 0;
-    computerScore = 0;
-    playMatch();
 
-}while(confirm("Vuoi giocare ancora?"));
-*/
 
 
 //funzione che controlla la scelta del computer
