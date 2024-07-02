@@ -1,16 +1,66 @@
 //variabili globali
 let playerScore = 0;
 let computerScore = 0;
-//codice per la creazione degli elementidella pagina
+let rounds = 0;
+
 const resultDiv = document.querySelector("#resultDiv");
+const buttonDiv = document.querySelector("#buttonDiv");
+let resultDivContent = document.querySelector(".resultP");
 const scissorButton = document.querySelector("#scissorButton");
 const rockButton = document.querySelector("#rockButton");
 const paperButton = document.querySelector("#paperButton");
+//aggiunge classe button ai pulsanti
 scissorButton.classList.add("button");
 rockButton.classList.add("button");
 paperButton.classList.add("button");
 
+//event listener:
+buttonDiv.addEventListener("click", (e)=>{
+    let target = e.target;
+    switch(target.id){
+        case "scissorButton":
+            playMatch("Forbici");
+            break;
+        case "paperButton":
+            playMatch("Carta");
+            break;
+        case "rockButton":
+            playMatch("Sasso");
+            break;
+    }
+});
 
+buttonDiv.addEventListener("mouseover", (e)=>{
+    let target = e.target;
+    switch(target.id){
+        case "scissorButton":
+            scissorButton.style.backgroundColor = "hotpink";
+            break;
+        case "paperButton":  
+            paperButton.style.backgroundColor = "lightblue";
+            break;
+        case "rockButton":
+            rockButton.style.backgroundColor = "rgb(143,254,9)";
+            break;
+
+    }
+});
+
+buttonDiv.addEventListener("mouseout", (e)=>{
+    let target = e.target;
+    switch(target.id){
+        case "scissorButton":
+            scissorButton.style.backgroundColor = "rgb(255, 46, 46)";
+            break;
+        case "paperButton":  
+            paperButton.style.backgroundColor = "rgb(0, 89, 255)";
+            break;
+        case "rockButton":
+            rockButton.style.backgroundColor = "rgb(92, 241, 92)";
+            break;
+
+    }
+});
 
 
 
@@ -51,7 +101,7 @@ function getComputerChoice(){
 }
 
 //funzione che implementa la scelta da parte del giocatore
-function getPlayerChoice(){
+/*function getPlayerChoice(){
     let sceltaPlayer = "";
     let input = 0; 
     do{
@@ -77,72 +127,81 @@ function getPlayerChoice(){
             }
         
     }while(sceltaPlayer == "non valido" || input < 1 || input > 3)
-        
+  
         
     return sceltaPlayer;    
 
 }
-
+  */    
 
 function match(playerChoice, computerChoice){
     
-    console.log(`Scelta computer: ${computerChoice}\nScelta Giocatore: ${playerChoice}
-            `)
+    resultDivContent.textContent = `Scelta computer: ${computerChoice}\nScelta Giocatore: ${playerChoice}
+            `;
     if(playerChoice === computerChoice){
-        console.log("Pari!");
+        resultDivContent.textContent += "\nPari!\n";
         
         
     }else if(playerChoice === "Carta" && computerChoice === "Forbici"){
-       console.log("Forbici batte Carta! Vince il Computer!");
+       resultDivContent.textContent += "\nForbici batte Carta! Vince il Computer!\n";
       
        computerScore++;
     }else if(playerChoice === "Forbici" && computerChoice === "Sasso" ){
-        console.log("Sasso batte Forbici! Vince il Computer!");
+        resultDivContent.textContent +="\nSasso batte Forbici! Vince il Computer!\n";
         
         computerScore++;
     }else if(playerChoice === "Sasso" && computerChoice === "Carta" ){
-        console.log("Carta batte Sasso! Vince il Computer!");
+        resultDivContent.textContent += "\nCarta batte Sasso! Vince il Computer!\n";
         
         computerScore++;
     }else if(playerChoice === "Sasso" && computerChoice === "Forbici" ){
-        console.log("Sasso batte Forbici! Hai vinto!");
+        resultDivContent.textContent += "\nSasso batte Forbici! Hai vinto!\n";
        
         playerScore++;
     }else if(playerChoice === "Carta" && computerChoice === "Sasso" ){
-        console.log("Carta batte sasso! Hai vinto!");
+        resultDivContent.textContent += "\nCarta batte sasso! Hai vinto!\n";
         
         playerScore++;
     }else if(playerChoice === "Forbici" && computerChoice === "Carta" ){
-        console.log("Forbici batte Carta! Hai vinto!");
+        resultDivContent.textContent += "\nForbici batte Carta! Hai vinto!\n";
         
         playerScore++;
 
     }
 
-    console.log(`Punteggio Computer : ${computerScore}\nPunteggio Giocatore: ${playerScore}`);
+    
+    if(rounds >= 5){
+        if(computerScore > playerScore){
+            resultDivContent.textContent += `\nRISULTATO FINALE: Vince il Computer ${computerScore} a ${playerScore}!\n\nScegli per giocare ancora`;
+            rounds = 0;
        
+        }else if(computerScore < playerScore){
+            resultDivContent.textContent += `\nRISULTATO FINALE: Hai vinto ${playerScore} a ${computerScore}!\n\nScegli per giocare ancora`;
+            rounds = 0;
+        }else{
+            resultDivContent.textContent += `\nRISULTATO FINALE: Pari! ${playerScore} a ${computerScore}!\n\nScegli per giocare ancora`;
+            rounds = 0;
+        }
+        playerScore = 0;
+        computerScore = 0;
+    }else{
+        
+        resultDivContent.textContent += `\nPunteggio Computer : ${computerScore}\nPunteggio Giocatore: ${playerScore}\n\nRound giocati: ${rounds} `;
+        
+    }
             
 }
 
-function playMatch(){
-    let rounds = 0;
+function playMatch(playerChoice){
     
-    console.log("Alla meglio di cinque! via!");
     
-    while(rounds < 5){
-        match(getPlayerChoice(), getComputerChoice());
+    
+    
+        
+        match(playerChoice, getComputerChoice());
         rounds++;
-    }
-
-    if(computerScore > playerScore){
-        console.log(`Vince il Computer ${computerScore} a ${playerScore}!`);
-   
-    }else if(computerScore < playerScore){
-        console.log(`Hai vinto ${playerScore} a ${computerScore}!`);
     
-    }else{
-        console.log(`Pari! ${playerScore} a ${computerScore}!`);
     
-    }
+    
         
 }
