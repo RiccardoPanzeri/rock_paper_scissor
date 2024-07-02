@@ -3,7 +3,12 @@ let playerScore = 0;
 let computerScore = 0;
 //codice per la creazione degli elementidella pagina
 const resultDiv = document.querySelector("#resultDiv");
-
+const scissorButton = document.querySelector("#scissorButton");
+const rockButton = document.querySelector("#rockButton");
+const paperButton = document.querySelector("#paperButton");
+scissorButton.classList.add("button");
+rockButton.classList.add("button");
+paperButton.classList.add("button");
 
 
 
